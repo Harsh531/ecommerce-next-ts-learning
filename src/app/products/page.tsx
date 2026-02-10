@@ -15,7 +15,7 @@ export default function ProductsPage() {
     const searchText = useAppSelector((state) => state.product.searchText);
     const filteredProducts = useAppSelector((state) => state.product.list.filter(product => product.name.toLowerCase().includes(searchText.toLowerCase())));
 
-    
+
     const handleChangeSearchText = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(setSearchText(e.target.value));
     }
@@ -51,13 +51,15 @@ export default function ProductsPage() {
 
             <div className="flex flex-col flex-1 overflow-y-auto overflow-hidden">
                 <div className="grid grid-cols-4 gap-4 flex-1 ">
-                    {
-                        filteredProducts?.map((product) => (
+                    {filteredProducts.length === 0 ? (
+                        <div className="col-span-4 text-center text-zinc-500">No products found</div>
+                    ) : (
+                        filteredProducts.map((product) => (
                             <div key={product.id} className="">
                                 <CardComponent data={product} />
                             </div>
                         ))
-                    }
+                    )}
                 </div>
             </div>
 
