@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"json-server --watch src/lib/data/db.json --port 4000\" \"next dev\"",
     "build": "next build",
-    "start": "next start",
+    "start": "concurrently \"json-server --watch src/lib/data/db.json --port 4000\" \"next start\"",
     "lint": "eslint",
     "json-server": "json-server --watch src/lib/data/db.json --port 4000"
   },
@@ -30,6 +30,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
+    "concurrently": "^9.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "json-server": "1.0.0-beta.3",
